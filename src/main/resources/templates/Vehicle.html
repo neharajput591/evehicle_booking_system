@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(237, 229, 229);
+        }
+
+        header {
+            background: linear-gradient(to right, #0c2167, rgb(237, 229, 229));
+        }
+
+
+        .logo {
+            height: 50px;
+            width: 100px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Distribute left and right content */
+            padding: 0px 30px;
+
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .h1 {
+            font-size: 35px;
+            margin-left: 10px;
+            color: rgb(40, 35, 35);
+        }
+
+
+        .right-section a {
+            /* display: flex; */
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            padding: 2px 20px;
+
+            /* padding-left: 20px;
+            margin-top: 0%;
+            padding-top: 0%; */
+
+
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* .register{
+            margin-left: 1px;
+        } */
+
+        .right-section a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        h1,
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        #data12{
+            margin: 10px;
+            /* padding: 20px; */
+        }
+
+        #button{
+            font-size: 15px;
+            background-color: rgb(219, 180, 72) ;
+            border-radius: 5px;
+        }
+        #button:hover{
+            font-size: 18px;
+            background-color: rgb(234, 146, 58);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    alt="evo charge" class="logo">
+                <h1 class="h1">Charge</h1>
+            </div>
+
+            <div class="right-section">
+                <!-- <a th:href="@{/User/vehicle}" class="login">View Vehicle</a> -->
+                <a th:href="@{/User/cart}" class="register">MyCart</a>
+                <a th:href="@{/User/orders}">Order</a>
+                <!-- <a th:href=""></a> -->
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <div class="grey-ola" th:each="vehicle : ${vehicles}"
+        style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white; display: flex;">
+
+        <div>
+            <img th:if="${vehicle != null and vehicle.imageUrl != null}" th:src="${vehicle.imageUrl}" width="550"
+                height="400" class="itemImage" />
+
+        </div>
+
+        <div style="margin-top: 50px; display: block; padding-left: 80px;">
+            <span><b>Brand :- </b></span>
+            <span th:text="${vehicle.brand}" class="data" id="data12" ></span> <br> <br>
+
+            <span><b>Vehicle id :-</b></span>
+            <span th:text="${vehicle.vehicleId}" class="itemid"></span>
+
+            <span><b>Model Name :- </b></span>
+            <span th:text="${vehicle.modelName}" class="itemModel" id="data12"></span><br><br>
+
+            <span><b>Price :-</b> </span>
+            <span th:text="${vehicle.price}" class="itemPrice" id="data12"></span><br><br>
+
+            <span><b>Range (km/charge) :-</b> </span>
+            <span th:text="${vehicle.rangeKm}" class="data" id="data12"></span><br><br>
+
+            <span><b>Battery Capacity :- </b></span>
+            <span th:text="${vehicle.batteryCapacity}"></span> <br> <br>
+
+            
+            <span><b>Description :- </b></span>
+            <span th:text="${vehicle.description}" class="itemDesc" id="data12"></span><br><br>
+            
+            <span style="color: rgb(125, 189, 28);"><b>In Stock </b></span> <br><br>
+
+            <button class="addtocart"  id="button">Add to Cart</button>
+
+            <button  id="button" style="margin-left: 20px;">Buy Now</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll(".addtocart").forEach(button => {
+            button.addEventListener("click", function () {
+                const card = button.closest(".grey-ola");
+                const image = card.querySelector(".itemImage").src;
+                const modelname = card.querySelector(".itemModel").textContent;
+                const description = card.querySelector(".itemDesc").textContent;
+                const price = parseFloat(card.querySelector(".itemPrice").textContent);
+                const vehicleid = parseInt(card.querySelector(".itemid").textContent);
+
+                console.log(vehicleid);
+
+                const cartItem = { image, modelname, description, price , 
+                    vehicle: { 
+                        vehicleId : vehicleid}
+                     };
+
+                fetch("/User/addtocart", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify(cartItem)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Item added to your cart!");
+                        } else {
+                            alert("Please LOGIN to add an item to your cart");
+                        }
+                    })
+                    .catch(err => console.error("Error adding to cart:", err));
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(237, 229, 229);
+        }
+
+        header {
+            background: linear-gradient(to right, #0c2167, rgb(237, 229, 229));
+        }
+
+
+        .logo {
+            height: 50px;
+            width: 100px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Distribute left and right content */
+            padding: 0px 30px;
+
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .h1 {
+            font-size: 35px;
+            margin-left: 10px;
+            color: rgb(40, 35, 35);
+        }
+
+
+        .right-section a {
+            /* display: flex; */
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            padding: 2px 20px;
+
+            /* padding-left: 20px;
+            margin-top: 0%;
+            padding-top: 0%; */
+
+
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* .register{
+            margin-left: 1px;
+        } */
+
+        .right-section a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        h1,
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 300;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    alt="evo charge" class="logo">
+                <h1 class="h1">Charge</h1>
+            </div>
+
+            <div class="right-section">
+                <!-- <a th:href="@{/User/vehicle}" class="login">View Vehicle</a> -->
+                <a th:href="@{/User/cart}" class="register">MyCart</a>
+                <a th:href="@{/User/orders}">Order</a>
+                <!-- <a th:href=""></a> -->
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <!-- <div class="ola_s1pro">
+        <img src="grey_ola.avif" alt="image">
+    </div> -->
+
+    <!-- <div id="about" style=" margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; background-color: white;"
+        th:each="vehicle: ${vehicles}">
+
+        <div>
+            <img th:if="${vehicle.imageUrl != null}" th:src="@{${vehicle.imageUrl}}" width="100" height="100"
+                alt="Vehicle Image" />
+        </div> -->
+
+
+    <!-- <div style="margin-left: 40px;margin-right: 20px;"> -->
+
+    <!-- <h3 style="font-size: 30px; color: rgb(186, 2, 2); text-align: center;">About us</h3> -->
+
+
+    <!-- </div> -->
+
+
+    <!-- </div> -->
+
+    <div class="grey-ola" th:each="vehicle: ${vehicles}"
+        style=" margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white; display: flex;">
+
+
+        <div>
+
+            <img th:if="${vehicle != null and vehicle.imageUrl != null}" th:src="${vehicle.imageUrl}" width="550"
+                height="400" id="itemImage" />
+
+            <img src="" alt="">
+            <button id="addtocart">add to cart</button>
+
+        </div>
+
+
+
+        <div style=" margin-top: 50px; display: block; padding-left: 80px;">
+
+            <span><b>Brand :- </b></span>
+            <span th:text="${vehicle.brand}" class="data"></span> <br>
+
+            <span>Model Name :- </span>
+            <span th:text="${vehicle.modelName}" class="data" id="itemModel"></span><br>
+
+            <!-- <span><b>Vehicle Id :- </b></span>
+            <span th:text="${vehicle.vehicleId}" id="itemId"></span> -->
+
+            <span>Price :- </span>
+            <span th:text="${vehicle.price}" class="data" id="itemPrice"></span><br>
+
+            <span>Range (km/charge) :- </span>
+            <span th:text="${vehicle.rangeKm}" class="data"></span><br>
+
+            <span>Description :- </span>
+            <span th:text="${vehicle.description}" class="data" id="itemDesc"></span><br>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- <div th:each="vehicle : ${vehicles}" class="vehicle-card">
+    <img th:src="${vehicle.imageUrl}" width="550" height="400" class="itemImage">
+    <span class="itemId" th:text="${vehicle.vehicleId}"></span>
+    <span class="itemModel" th:text="${vehicle.modelName}"></span>
+    <span class="itemPrice" th:text="${vehicle.price}"></span>
+    <span class="itemDesc" th:text="${vehicle.description}"></span>
+    <button class="addtocart">Add to cart</button>
+</div> -->
+
+
+
+
+    <script>
+
+        document.getElementById("addtocart").addEventListener("click", function () {
+
+            const image = document.getElementById("itemImage").src;
+            const modelname = document.getElementById("itemModel").textContent;
+            const description = document.getElementById("itemDesc").textContent;
+            const vehicleid = Number(document.getElementById("itemId").textContent);
+            const price = parseFloat(document.getElementById("itemPrice").textContent);
+
+            const cartItem = { image, modelname, description, price};
+
+
+            fetch("/User/addtocart", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(cartItem)
+            })
+                .then(response => response.text())
+                .then(msg => alert(msg))
+                .catch(err => console.error("Error:", err)); 
+
+             fetch("/User/addtocart" , {
+                method:"post" , 
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                credentials:"include",
+                body:JSON.stringify(cartItem)
+            })
+            .then(response => {
+                if(response.ok){
+                    alert("Item added to your cart");
+                }
+                else{
+                    alert("Please LOGIN TO ADD A ITEM TO YOUR CART");
+                }
+            })
+
+            .catch(err => console.error("Error adding to cart : ",err));
+        });
+    </script>
+<!-- <script>
+    document.querySelectorAll(".addtocart").forEach(button => {
+    button.addEventListener("click", function () {
+        const card = button.closest(".vehicle-card");
+
+        const vehicleid = Number(card.querySelector(".itemId").textContent);
+        const modelname = card.querySelector(".itemModel").textContent;
+        const description = card.querySelector(".itemDesc").textContent;
+        const price = parseFloat(card.querySelector(".itemPrice").textContent);
+        const image = card.querySelector(".itemImage").src;
+
+        const cartItem = { vehicle: { vehicleId: vehicleid }
+        , modelname, description, price, image };
+
+        fetch("/User/addtocart", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cartItem)
+        })
+        .then(res => res.text())
+        .then(msg => alert(msg))
+        .catch(err => console.error(err));
+    });
+});
+
+</script> -->
+
+</body>
+
+</html>

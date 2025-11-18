@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <header>
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    alt="evo charge" class="logo">
+                <h1 class="h1">Charge</h1>
+            </div>
+
+            <div class="right-section">
+                <!-- <a th:href="@{/User/vehicle}" class="login">View Vehicle</a> -->
+                <a th:href="@{/User/cart}" class="register">MyCart</a>
+                <a th:href="@{/User/orders}">Order</a>
+                <!-- <a th:href=""></a> -->
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <div class="grey-ola" th:each="vehicle : ${vehicles}"
+        style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white; display: flex;">
+
+        <div>
+            <img th:if="${vehicle != null and vehicle.imageUrl != null}" th:src="${vehicle.imageUrl}" width="550"
+                height="400" class="itemImage" />
+
+        </div>
+
+        <div style="margin-top: 50px; display: block; padding-left: 80px;">
+            <span><b>Brand :- </b></span>
+            <span th:text="${vehicle.brand}" class="data" id="data12" ></span> <br> <br>
+
+            <span><b>Model Name :- </b></span>
+            <span th:text="${vehicle.modelName}" class="itemModel" id="data12"></span><br><br>
+
+            <span><b>Price :-</b> </span>
+            <span th:text="${vehicle.price}" class="itemPrice" id="data12"></span><br><br>
+
+            <span><b>Range (km/charge) :-</b> </span>
+            <span th:text="${vehicle.rangeKm}" class="data" id="data12"></span><br><br>
+
+            <span><b>Battery Capacity :- </b></span>
+            <span th:text="${vehicle.batteryCapacity}"></span> <br> <br>
+
+            
+            <span><b>Description :- </b></span>
+            <span th:text="${vehicle.description}" class="itemDesc" id="data12"></span><br><br>
+            
+            <span style="color: rgb(125, 189, 28);"><b>In Stock </b></span> <br><br>
+
+            <button class="addtocart"  id="button">Add to Cart</button>
+
+            <button  id="button" style="margin-left: 20px;">Buy Now</button>
+        </div>
+    </div>
+</body>
+</html>

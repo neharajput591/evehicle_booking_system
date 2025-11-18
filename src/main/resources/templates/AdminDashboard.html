@@ -1,0 +1,364 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Good morning admin sir</h1>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | E-Vehicle System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: #f4f7fc;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 230px;
+            background: #0f172a;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            padding: 15px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #38bdf8;
+            color: #000;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 220px;
+            padding: 30px;
+            width: 100%;
+        }
+
+        header {
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.5rem;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        /* Section styling */
+        section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #e2e8f0;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            background: #38bdf8;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0284c7;
+        }
+
+        .add-form input {
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#addVehicle">Add Vehicle</a>
+        <a href="#manageVehicles">Manage Vehicles</a>
+        <a href="#viewUsers">View Users</a>
+        <a href="#feedback">Feedback</a>
+        <!-- <a href="#analytics">Analytics</a> -->
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Welcome, Admin</h1>
+            <span>🛵 E-Vehicle Booking System</span>
+        </header>
+
+        <!-- Dashboard Cards -->
+        <div id="dashboard">
+            <div class="cards">
+                <div class="card">
+                    <h3>Total Vehicles</h3>
+                    <!-- <p><span></span></p> -->
+                    <p th:text="${totalVehicles}"></p>
+                </div>
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <p th:text="${totalUsers}"></p>
+                </div>
+                <div class="card">
+                    <h3>Total Orders</h3>
+                    <p th:text="${totalOrders}"></p>
+                </div>
+                <div class="card">
+                    <h3>Feedbacks</h3>
+                    <p th:text="${noOfFeedback}"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Vehicle -->
+        <section id="addVehicle">
+            <h2>Add Vehicle</h2>
+            <form class="add-form" th:action="@{/Admin/addnewvehicle}" method="post" th:object="${newone}">
+
+                <input type="text" placeholder="Vehicle Name" th:field="*{modelName}">
+                <input type="text" placeholder="Brand" th:field="*{brand}">
+                <input type="text" placeholder="Type(scooty/bike)" th:field="*{type}">
+                <input type="number" placeholder="rangeKm" th:field="*{rangeKm}">
+                <input type="number" placeholder="Battery Capacity" th:field="*{batteryCapacity}">
+                <input type="number" placeholder="power" th:field="*{power}">
+                <input type="number" placeholder="stock" th:field="*{stock}">
+                <input type="number" placeholder="Price" th:field="*{price}">
+                <input type="text" placeholder="description" th:field="*{description}">
+
+                <label for="imageUrl">Image URL:</label>
+                <input type="url" id="imageUrl" name="imageUrl">
+
+                <!-- <input type="url" placeholder="Image URL"> -->
+                <button type="submit">Add Vehicle</button>
+
+            </form>
+        </section>
+
+        <!-- Manage Vehicles -->
+        <section id="manageVehicles">
+            <h2>Manage Vehicles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model Name</th>
+                        <th>Brand</th>
+                        <th>Type</th>
+                        <th>rangeKm</th>
+                        <th>Battery Capacity</th>
+                        <th>Power</th>
+                        <th>stock</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vehicle:${vehicles}">
+                        <td th:text="${vehicle.modelName}"></td>
+                        <td th:text="${vehicle.brand}"></td>
+                        <td th:text="${vehicle.type}"></td>
+                        <td th:text="${vehicle.rangeKm}"></td>
+                        <td th:text="${vehicle.batteryCapacity}"></td>
+                        <td th:text="${vehicle.power}"></td>
+                        <td th:text="${vehicle.stock}"></td>
+                        <!-- <td th:text="${vehicle.modelName}"></td> -->
+                        <td th:text="${vehicle.price}"></td>
+                        <td th:text="${vehicle.description}"></td>
+
+                        <td>
+                            <!-- <img th:if="${user.base64Image != null}" th:src="@{|data:image/jpeg;base64,${user.base64Image}|}"
+                    width="100" height="100" /> -->
+
+                            <!-- <img th:if="${vehicle.imageUrl != null}" th:src="${vehicle.imageUrl}" width="100"
+                                height="100" /> -->
+
+                            <!-- <img th:if="${vehicle.imageUrl != null}" th:src="@{${vehicle.imageUrl}}" width="100" -->
+                                <!-- height="100" /> -->
+
+                        <!-- <td> -->
+                            <img th:if="${vehicle.imageUrl != null}" th:src="@{${vehicle.imageUrl}}" width="100"
+                                height="100" alt="Vehicle Image" />
+                        <!-- </td> -->
+
+
+                        </td>
+
+
+
+                        <!-- <td>1</td><td>Hero Electric</td><td>Hero</td><td>₹85,000</td><td>Electric</td> -->
+                        <td><button><a
+                                    th:href="@{/Admin/UpdateVehicleData/{modelName}(modelName=${vehicle.modelName})}">Edit</a></button>
+                        </td>
+                        <td><button><a
+                                    th:href="@{/Admin/DeleteVehicle/{modelName}(modelName=${vehicle.modelName})}">Delete</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- View Users -->
+        <section id="viewUsers">
+            <h2>Registered Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- <th></th> -->
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Address</th>
+                        <th>createdAt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user:${users}">
+
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.phone}"></td>
+                        <td th:text="${user.city}"></td>
+                        <td th:text="${user.address}"></td>
+                        <td th:text="${user.createdAt}"></td>
+
+                        <!-- <td>101</td><td>Neha Rajput</td><td>neha@gmail.com</td><td>9876543210</td><td>Delhi</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Feedback -->
+        <section id="feedback">
+            <h2>User Feedback</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr th:each="feedback:${feedbacks}">
+
+                        <td th:text="${feedback.feedbackId}"></td>
+                        <td th:text="${feedback.comment}"></td>
+                        <td th:text="${feedback.rating}"></td>
+                        <td th:text="${feedback.feedbackDate}"></td>
+
+                    </tr>
+                    <!-- <tr><td>Neha</td><td>Great service and fast booking!</td><td>2025-11-01</td></tr> -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Analytics -->
+        <!-- <section id="analytics">
+            <h2>Analytics</h2>
+            <p>Here you can integrate charts for revenue, bookings, etc. (Chart.js placeholder)</p>
+            <img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="Chart" width="120">
+        </section> -->
+    </div>
+
+</body>
+
+</html>

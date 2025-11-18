@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #e6f7ff;
+        }
+
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Edit</h2>
+
+        <form th:action="@{/Admin/updateddata}" method="post" th:object="${bike}">
+            <label>Model Name:</label>
+            <input type="text" th:field="*{modelName}" placeholder="model name">
+
+            <label>Brand:</label>
+            <input type="text" th:field="*{brand}" placeholder="brand">
+
+            <label>type</label>
+            <input type="text" th:field="*{type}" placeholder="type">
+
+            <label>description</label>
+            <input type="text" th:field="*{description}" placeholder="description">
+
+            <label>price</label>
+            <input type="number" th:field="*{price}" placeholder="price">
+
+            <label>rangeKm</label>
+            <input type="number" th:field="*{rangeKm}" placeholder="rangeKm">
+
+            <label>batteryCapacity</label>
+            <input type="number" th:field="*{batteryCapacity}" placeholder="batteryCapacity">
+
+            <label>power</label>
+            <input type="number" th:field="*{power}" placeholder="power">
+
+            <label>stock</label>
+            <input type="number" th:field="*{stock}" placeholder="stock">
+
+            <button type="submit">Update</button>
+        </form>
+
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,262 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome, User!</h1>
+<p>You have successfully logged in.</p>
+<a th:href="@{/logout}">Logout</a>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Vehicle</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(237, 229, 229);
+        }
+
+        header {
+            background: linear-gradient(to right, #0c2167, rgb(237, 229, 229));
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Distribute left and right content */
+            padding: 0px 30px;
+
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .h1 {
+            font-size: 35px;
+            margin-left: 10px;
+            color: rgb(230, 228, 228);
+        }
+
+
+        .right-section a {
+            /* display: flex; */
+            font-size: 20px;
+            text-decoration: none;
+            color: rgb(231, 237, 247);
+            padding: 2px 20px;
+
+            /* padding-left: 20px;
+            margin-top: 0%;
+            padding-top: 0%; */
+
+
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* .register{
+            margin-left: 1px;
+        } */
+
+        .right-section a:hover {
+            background-color: rgba(139, 172, 240, 0.3);
+            color:  rgb(231, 196, 82);
+            font-size: 24px;
+        }
+
+        .backimage {
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-image: url("https://cdn.olaelectric.com/sites/evdp/pages/gen3/ola_s1pro_gen3_web_image.webp");
+            /* animation: myanimation 20s infinite alternate; */
+            /* background-image: url("https://cdn.olaelectric.com/sites/evdp/pages/gen3/ola_s1x_plus_gen3_web_image.webp"); */
+        }
+
+        .logo {
+            height: 50px;
+            width: 100px;
+        }
+
+        /* @keyframes myanimation {
+            0% {
+                background-image: url('/images/grey-ola.avif');
+            }
+
+            25% {
+                background-image: url('/images/suzuki-green.avif');
+            }
+
+            50% {
+                background-image: url('/images/tvs-red.jpg');
+            }
+
+            75% {
+                background-image: url('/images/ather.webp');
+            }
+
+            100% {
+                background-image: url('/images/blue_scooty.webp');
+            }
+        } */
+
+
+/* 
+        .new-vehicle {
+            margin-left: 20px;
+
+        }
+
+        .grey-ola {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .atag {
+            color: rgb(10, 35, 134);
+            text-align: right;
+            justify-content: space-between;
+            padding-left: 20px; */
+            /* padding-top: 100px; */
+            /* margin-top: 20px; */
+/* 
+
+        }
+
+        .atag:hover {
+            color: #4593e6;
+        }
+
+        #about {
+            display: flex;
+        } */
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="backimage">
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    alt="evo charge" class="logo">
+                <h1 class="h1">Charge</h1>
+            </div>
+
+            <div class="right-section">
+                <a th:href="@{/User/vehicle}"  >View Vehicle</a>
+                <a th:href="@{/User/cart}" >MyCart</a>
+                <a th:href="@{/User/orders}">Order</a>
+                <!-- <a th:href=""></a> -->
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </nav>
+        
+        <h1 style="text-align: right; padding-top:150px ; color:  rgb(231, 196, 82); padding-right: 50px;">Electrify
+            <br>Your Journey.
+        </h1>
+    </div>
+</header>
+        
+        <!-- <nav style="text-align: right;">
+            
+            <a href="#home" class="atag">Home</a>
+            <a href="#new-vehicle" class="atag">New Vehicles</a>
+            <a href="#about" class="atag">About</a>
+            <a href="#contact" class="atag" style="padding-right: 20px;">Contact</a>
+            
+        </nav> -->
+
+    <!-- <div class="new-vehicle" id="new-vehicle" >
+        <h1 style="text-align: center; margin-top: 80px; color: rgb(186, 2, 2);">New e-Vehicle</h1>
+        <div class="grey-ola" style=" margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white;">
+            <img src="/images/grey-ola.avif" alt="image" width="500px">
+
+            <div style="display: block; margin-top: 50px; ">
+                <h3>Brand : Ola Electric</h3>
+                <h3>Model name : Ola S1 Pro (Gen 2)</h3>
+                <h3>color : Grey</h3>
+                <h3>Price : ₹1,47,499</h3>
+                <h3>Range : 250 km/charge</h3>
+                <h3>Top Speed : 120 km/h</h3>
+                <h3>Motor Power : 11 kW </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="grey-ola" style=" margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white;">
+            <img src="/images/ather.webp" alt="image" width="500px">
+
+            <div style="display: block; margin-top: 50px;">
+                <h3>Brand : Ather</h3>
+                <h3>Model Name : Ather 450X</h3>
+                 <h3>Color : Space Gre</h3> -->
+                <!-- <h3>Price : ₹1,45,000 ( varies by state)</h3>
+                <h3>Range : 150 km/charge (IDC certified)</h3>
+                <h3>Top Speed : 90 km/h</h3>
+                <h3>Motor Power : 6.4 kW (Peak)</h3> -->
+                <!-- <h3>Battery Capacity : 3.7 kWh Li-ion</h3> -->
+                <!-- <h3>Acceleration (0–40 km/h) : 3.3 seconds</h3> -->
+                <!-- <h3>Charging Time : 0–80% in about 4 hours 30 minutes (home charger)</h3> -->
+
+
+            <!-- </div>
+
+        </div>
+    </div>
+
+    <div id="about" style=" margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; background-color: white;">
+
+        <div style="margin-left: 40px;margin-right: 20px;">
+
+            <h3 style="font-size: 30px; color: rgb(186, 2, 2); text-align: center;">About us</h3>
+            <p>At e-Vehicle, we are committed to driving the future of sustainable mobility. As a trusted platform for
+                electric two-wheelers, we offer a wide range of eco-friendly scooters from leading brands such as Ola,
+                Ather, and TVS. <br> <br>
+                Our goal is to make clean and efficient transportation accessible to everyone by combining innovation,
+                quality, and affordability. With a focus on customer satisfaction and environmental responsibility, we
+                aim to redefine the way people commute — one electric ride at a time.</p>
+
+        </div>
+
+
+        <div>
+            <img src="/images/tvs-red.jpg" alt="image" width="500px">
+        </div>
+    </div>
+
+    <div id="contact"  style=" margin: 25px; padding-bottom: 30px; box-shadow: 5px 5px 5px 5px #a3a5a9; padding-left: 25px; padding-top: 20px; background-color: white;">
+
+        <h3 style="text-align: center; font-size: 30px; color: rgb(186, 2, 2)">Contact Us</h3>
+        <p>We’d love to hear from you! Whether you have questions about our e-scooters, need help with your booking, or want to know more about electric vehicles — our team is here to assist you.</p>
+
+        <h3>📍 <b>Address:</b> e-Vehicle Pvt. Ltd., MG Road, Bengaluru, India</h3>
+        <h3><b>📞 Phone:</b> 91 98765 43210</h3>
+        <h3><b>✉️ Email:</b> supportecocharge@evehicle.com</h3>
+        <h3><b>🕒 Working Hours:</b> Monday – Saturday | 9:00 AM – 7:00 PM</h3>
+
+    </div> --> 
+</body>
+
+</html>

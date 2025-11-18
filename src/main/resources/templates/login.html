@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #e6f7ff;
+        }
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+
+    <!-- <form th:action="@{/login}" method="post">
+        <label>Email:</label>
+        <input type="text" name="username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form> -->
+
+    <form th:action="@{/login}" method="post">
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Password:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Login</button>
+</form>
+
+
+    <p>Don’t have an account? <a th:href="@{/register}">Register here</a></p>
+
+    <div th:if="${param.error}">
+        <p style="color:red;">Invalid email or password!</p>
+    </div>
+
+    <div th:if="${param.registerSuccess}">
+        <p style="color:green;">Registered successfully! Please login.</p>
+    </div>
+</div>
+</body>
+</html>
