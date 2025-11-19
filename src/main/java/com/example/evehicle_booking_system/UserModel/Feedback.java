@@ -30,6 +30,8 @@ public class Feedback {
     int rating;
     String comment;
     LocalDate feedbackDate;
+    Long useridfeed;
+    Long vehicleidfeed;
 
     @ManyToOne
     @JoinColumn(name="user_idfeed", referencedColumnName = "user_id")

@@ -28,6 +28,7 @@ public class Payment {
     String modelname;
     String image; 
     Double price;
+    Long vehicleId;
 
     // String paymentMethod;
     // String transactionId;

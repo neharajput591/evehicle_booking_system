@@ -8,15 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.evehicle_booking_system.Repository.CartItemRepository;
+import com.example.evehicle_booking_system.Repository.FeedbackRepository;
 import com.example.evehicle_booking_system.Repository.OrderRepository;
 import com.example.evehicle_booking_system.Repository.PaymentRepository;
 import com.example.evehicle_booking_system.Repository.UserRepository;
+import com.example.evehicle_booking_system.Services.PaymentService;
 import com.example.evehicle_booking_system.Services.VehicleService;
 import com.example.evehicle_booking_system.UserModel.CartItem;
+import com.example.evehicle_booking_system.UserModel.Feedback;
 import com.example.evehicle_booking_system.UserModel.Payment;
 import com.example.evehicle_booking_system.UserModel.User;
 
@@ -25,6 +28,12 @@ public class UserController {
 
     @Autowired
     VehicleService vs;
+
+    @Autowired
+    FeedbackRepository feedrepo;
+
+    @Autowired
+    PaymentService paymentservice;
 
     @Autowired
     UserRepository userRepository;
@@ -102,39 +111,65 @@ public class UserController {
         User u = optionalUser.get();
 
         Long userid = u.getUserId();
+
+        List<Payment> orders = paymentservice.getOrderByUserId(userid);
         // Integer userid = optionalUser.getUserId();
 
-        Optional<Payment> orders = paymentrepo.findById(userid);
+        // Payment orders = paymentrepo.findById(userid)
+        //  .orElse(null);
+
+        model.addAttribute("orders" , orders);
+
+        model.addAttribute("feed" , new Feedback());
 
         // Optional<Payment> orders = paymentrepo.findById(u.getUserId());
 
         return "Order";
     }
 
-    @GetMapping("/User/payfororder/{modelname}")
-    public String payorder(@PathVariable(value = "modelname") String modelname, Model model, Principal principal) {
-
-        String email = principal.getName();
-
-        // Integer userid = principal.get
+    @PostMapping("/User/feedback")
+    public String  feedbackveh(@ModelAttribute("feed") Feedback feed,Model model , Principal principal){
+  
+           String email = principal.getName();
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
-        User u = optionalUser.get();
-        // Integer userid = optionalUser.getUserId();
 
-        model.addAttribute("optionalUser", optionalUser);
-        System.out.println(u.getUserId());
+        User user = optionalUser.get();
+        Long user_idfeed = user.getUserId();
 
-        Optional<Payment> paying = paymentrepo.findByModelname(modelname);
+        // setUser_idfeed(user_idfeed);
+        feedrepo.save(feed);
 
-        model.addAttribute("paying", paying);
+        // System.out.println("Feedback is submitted successfully");
 
-        // Optional<Payment> paying = paymentrepo.findByModelnameAndUser_id(modelname, u.getUserId());
-
-        // Optional<Payment> paying = paymentrepo.findById(id);
-
-        return "payment";
+        return "user_home";
+        
     }
+
+    // @GetMapping("/User/payfororder/{modelname}")
+    // public String payorder(@PathVariable(value = "modelname") String modelname, Model model, Principal principal) {
+
+    //     String email = principal.getName();
+
+    //     Integer userid = principal.get
+
+    //     Optional<User> optionalUser = userRepository.findByEmail(email);
+    //     User u = optionalUser.get();
+    //     Integer userid = optionalUser.getUserId();
+
+    //     model.addAttribute("optionalUser", optionalUser);
+    //     System.out.println(u.getUserId());
+
+    //     Optional<Payment> paying = paymentrepo.findByModelname(modelname);
+
+    //     model.addAttribute("paying", paying);
+
+    //     Optional<Payment> paying = paymentrepo.findByModelnameAndUser_id(modelname, u.getUserId());
+
+    //     Optional<Payment> paying = paymentrepo.findById(id);
+
+    //     return "payment";
+    // }
 
     // @GetMapping("/User/orders")
     // public String or

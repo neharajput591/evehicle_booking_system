@@ -123,7 +123,7 @@
 
         <div>
             <img th:if="${vehicle != null and vehicle.imageUrl != null}" th:src="${vehicle.imageUrl}" width="550"
-                height="400" class="itemImage" />
+                height="400" class="itemImage" th:id="'itemImage-' + ${vehicle.vehicleId}" />
 
         </div>
 
@@ -132,13 +132,13 @@
             <span th:text="${vehicle.brand}" class="data" id="data12" ></span> <br> <br>
 
             <span><b>Vehicle id :-</b></span>
-            <span th:text="${vehicle.vehicleId}" class="itemid"></span>
+            <span th:text="${vehicle.vehicleId}" th:id="'itemvehicle-' + ${vehicle.vehicleId}" class="itemid"></span>
 
             <span><b>Model Name :- </b></span>
-            <span th:text="${vehicle.modelName}" class="itemModel" id="data12"></span><br><br>
+            <span th:text="${vehicle.modelName}" class="itemModel" th:id="'itemModel-' + ${vehicle.vehicleId}"></span><br><br>
 
             <span><b>Price :-</b> </span>
-            <span th:text="${vehicle.price}" class="itemPrice" id="data12"></span><br><br>
+            <span th:text="${vehicle.price}" class="itemPrice" th:id="'itemPrice-' + ${vehicle.vehicleId}"></span><br><br>
 
             <span><b>Range (km/charge) :-</b> </span>
             <span th:text="${vehicle.rangeKm}" class="data" id="data12"></span><br><br>
@@ -154,7 +154,8 @@
 
             <button class="addtocart"  id="button">Add to Cart</button>
 
-            <button  id="button" style="margin-left: 20px;">Buy Now</button>
+            <button onclick="payment(this)" th:data-id="${vehicle.vehicleId}" id="button" style="margin-left: 20px;">Buy Now</button>
+            <!-- <button   id="button" style="margin-left: 20px;">Buy Now</button> -->
         </div>
     </div>
 
@@ -191,6 +192,43 @@
                     .catch(err => console.error("Error adding to cart:", err));
             });
         });
+
+
+
+
+        function payment(buttonElement) {
+
+
+            const id = buttonElement.dataset.id;
+
+            const modelname = document.getElementById("itemModel-" + id).textContent;
+            const price = parseFloat(document.getElementById("itemPrice-" + id).textContent.trim());
+            const image = document.getElementById("itemImage-" + id).src;
+            const vehicleId = Number(document.getElementById("itemvehicle-" + id).textContent);
+
+            console.log("price " + price);
+
+            const paymentitem = { modelname, price, image , vehicleId};
+
+            fetch("/User/payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                //   credentials: "same-origin",      // 👈 REQUIRED
+                mode: "same-origin",
+                body: JSON.stringify(paymentitem)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Order placed successfully");
+                        // return "/User/payfororder/{modelname}";
+                    } else {
+                        alert("Please LOGIN to order an item");
+                    }
+                })
+                .catch(err => console.error("Error ordering an item:", err));
+
+        }
     </script>
 
 </body>

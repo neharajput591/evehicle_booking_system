@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(237, 229, 229);
+        }
+
+        header {
+            background: linear-gradient(to right, #0c2167, rgb(237, 229, 229));
+        }
+
+
+        .logo {
+            height: 50px;
+            width: 100px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Distribute left and right content */
+            padding: 0px 30px;
+
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .h1 {
+            font-size: 35px;
+            margin-left: 10px;
+            color: rgb(40, 35, 35);
+        }
+
+
+        .right-section a {
+            /* display: flex; */
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            padding: 2px 20px;
+
+            /* padding-left: 20px;
+            margin-top: 0%;
+            padding-top: 0%; */
+
+
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* .register{
+            margin-left: 1px;
+        } */
+
+        .right-section a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+      <header>
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    alt="evo charge" class="logo">
+                <h1 class="h1">Charge</h1>
+            </div>
+
+            <div class="right-section">
+                <a th:href="@{/User/vehicle}" class="login">View Vehicle</a>
+                <!-- <a th:href="@{/User/cart}" class="register">MyCart</a> -->
+                <a th:href="@{/User/orders}">Order</a>
+                <!-- <a th:href=""></a> -->
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </nav>
+
+    </header>
+    
+
+    <div class="main" th:each="order: ${orders}"
+    style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white; display: flex;">
+        
+    <div class="image_section">
+
+            <img th:src="${order.image}" alt="Vehicle image" height="300" width="400">
+
+        </div>
+
+        <div style="margin-top: 50px; display: block; padding-left: 80px;">
+
+            <span th:text="${order.vehicleId}" style="display: none;"></span>
+            <span><b>Model Name</b></span>
+            <span th:text="${order.modelname}"></span><br> <br>
+
+            <span><b>Price</b></span>
+            <span th:text="${order.price}"></span> <br> <br>
+
+            <form action="#" th:action="@{/User/feedback}" method="post" th:object="${feed}">
+
+                <!-- <span th:text=""></span> -->
+                 <!-- <input type="text" name="" id=""> -->
+                  <input type="hidden" th:text="${order.vehicleId}" th:field="*{vehicleidfeed}">
+
+                  <input type="hidden" th:text="${order.user_id}" th:field="*{useridfeed}">
+
+                  <!-- <input type="hidden" name="" id=""> -->
+
+                 <!-- <span th:text="${order.vehicleId}" style="display: none;" th:field="*{vehicle_idfeed}"> -->
+                <!-- <input type="text" th:field="*{user_idfeed}"></span> -->
+
+                <h3>feedback :- </h3>
+                <input type="text" th:field="*{comment}">
+
+                <h3>Rating</h3>
+                <input type="number" th:field="*{rating}" pattern="[1-5]{1}">
+
+                <h3>Date</h3>
+                <input type="date" th:field="*{feedbackDate}" name="feedback_date" id="">
+
+                <button type="submit">Submit</button>
+            </form>
+
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Model name </th>
+                <th>image</th>
+                <th>price</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="order:${orders}">
+
+                <td th:text="${order.modelname}"></td>
+                <td th:text="${order.image}"></td>
+                <td th:text="${order.price}"></td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
