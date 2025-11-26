@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Vehicle</title>
+
+    <style>
+        /* Global Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f2f3f7;
+        }
+
+        /* Navbar */
+        header {
+            background: linear-gradient(to right, #0a1a4f, #d3d7e3);
+            padding: 10px 0;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .h1 {
+            font-size: 32px;
+            margin-left: 12px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .right-section a {
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .right-section a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .logo {
+            height: 55px;
+            width: 110px;
+        }
+
+        /* Hero Section */
+        .backimage {
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            animation: myanimation 20s infinite alternate;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding-right: 80px;
+            color: rgb(186, 2, 2);
+            text-shadow: 1px 1px 5px black;
+        }
+
+        @keyframes myanimation {
+            0% {
+                background-image: url('/images/grey-ola.avif');
+            }
+
+            25% {
+                background-image: url('/images/suzuki-green.avif');
+            }
+
+            50% {
+                background-image: url('/images/tvs-red.jpg');
+            }
+
+            75% {
+                background-image: url('/images/ather.webp');
+            }
+
+            100% {
+                background-image: url('/images/blue_scooty.webp');
+            }
+        }
+
+        .hero-heading {
+            font-size: 60px;
+            line-height: 70px;
+            text-align: right;
+            margin-top: -100px;
+        }
+
+        nav.hero-nav {
+            text-align: right;
+            margin-top: 20px;
+            margin-right: 50px;
+        }
+
+        .atag {
+            color: white;
+            font-size: 20px;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .atag:hover {
+            color: #88b8ff;
+        }
+
+        /* Vehicle Section */
+        #new-vehicle {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: rgb(186, 2, 2);
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .vehicle-card {
+            display: flex;
+            background: white;
+            margin: 40px auto;
+            width: 85%;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vehicle-card img {
+            border-radius: 15px;
+        }
+
+        .vehicle-details {
+            margin-left: 40px;
+            padding-top: 20px;
+        }
+
+        .vehicle-details h3 {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            background: white;
+            margin: 20px 5%;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        #about img {
+            border-radius: 15px;
+            margin-left: 20px;
+        }
+
+        #about h3 {
+            color: rgb(186, 2, 2);
+            font-size: 32px;
+            text-align: center;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: white;
+            margin: 20px 5%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        #contact h3 {
+            text-align: center;
+            font-size: 32px;
+            color: rgb(186, 2, 2);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    class="logo">
+                <h1 class="h1">Charge</h1>
+            </div>
+
+            <div class="right-section">
+                <a th:href="@{/login}" class="login">Login</a>
+                <a th:href="@{/register}" class="register">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="backimage">
+        <nav class="hero-nav">
+            <a href="#home" class="atag">Home</a>
+            <a href="#new-vehicle" class="atag">Vehicles</a>
+            <a href="#about" class="atag">About</a>
+            <a href="#contact" class="atag">Contact</a>
+        </nav>
+
+        <h1 class="hero-heading">Electrify <br> Your Journey.</h1>
+    </div>
+
+    <!-- Vehicle Section -->
+    <div id="new-vehicle">
+        <h1 class="section-title">New e-Vehicles</h1>
+
+        <!-- Vehicle Card 1 -->
+        <div class="vehicle-card">
+            <img src="/images/grey-ola.avif" width="450px">
+            <div class="vehicle-details">
+                <h3>Brand: Ola Electric</h3>
+                <h3>Model: Ola S1 Pro (Gen 2)</h3>
+                <h3>Color: Grey</h3>
+                <h3>Price: ₹1,47,499</h3>
+                <h3>Range: 250 km/charge</h3>
+                <h3>Top Speed: 120 km/h</h3>
+                <h3>Motor Power: 11 kW</h3>
+            </div>
+        </div>
+
+        <!-- Vehicle Card 2 -->
+        <div class="vehicle-card">
+            <img src="/images/ather.webp" width="450px">
+            <div class="vehicle-details">
+                <h3>Brand: Ather</h3>
+                <h3>Model: Ather 450X</h3>
+                <h3>Price: ₹1,45,000</h3>
+                <h3>Range: 150 km/charge</h3>
+                <h3>Top Speed: 90 km/h</h3>
+                <h3>Motor Power: 6.4 kW</h3>
+                <h3>Charging Time: 4 hrs 30 min</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- About Section -->
+    <div id="about">
+        <div>
+            <h3>About Us</h3>
+            <p style="font-size: 18px; line-height: 1.7; padding-right: 20px;">
+                At e-Vehicle, we are dedicated to shaping the future of eco-friendly mobility.  
+                Our platform offers a wide collection of electric scooters from top brands like Ola, Ather, and TVS.  
+                We aim to promote sustainable transportation by providing reliable, affordable, and innovative e-vehicles.
+            </p>
+        </div>
+
+        <img src="/images/tvs-red.jpg" width="450px">
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact">
+        <h3>Contact Us</h3>
+        <p style="font-size: 18px; text-align: center;">Feel free to reach out for any queries related to bookings,
+            scooters, or EV information.</p>
+
+        <h3>📍 Address: e-Vehicle Pvt. Ltd., MG Road, Bengaluru, India</h3>
+        <h3>📞 Phone: +91 98765 43210</h3>
+        <h3>✉️ Email: supportecocharge@evehicle.com</h3>
+        <h3>🕒 Working Hours: Mon–Sat | 9:00 AM – 7:00 PM</h3>
+    </div>
+
+</body>
+
+</html>

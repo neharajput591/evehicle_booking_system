@@ -29,11 +29,12 @@
             display: flex;
             background-color: #f4f7fc;
             min-height: 100vh;
+            /* max-width: fit-content; */
         }
 
         /* Sidebar */
         .sidebar {
-            width: 230px;
+            width: 200px;
             background: #0f172a;
             color: #fff;
             height: 100vh;
@@ -64,9 +65,9 @@
 
         /* Main content */
         .main-content {
-            margin-left: 220px;
+            margin-left: 190px;
             padding: 30px;
-            width: 100%;
+            width: 84%;
         }
 
         header {
@@ -109,6 +110,7 @@
         section {
             background: #fff;
             padding: 25px;
+         /* padding-right: 9rem; */
             border-radius: 10px;
             margin-top: 25px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -121,13 +123,14 @@
 
         table {
             width: 100%;
+            /* padding-right: 100px; */
             border-collapse: collapse;
             text-align: left;
         }
 
         table th,
         table td {
-            padding: 12px;
+            padding: 8px;
             border-bottom: 1px solid #ddd;
         }
 
@@ -151,8 +154,15 @@
         .add-form input {
             padding: 8px;
             margin: 8px;
+            /* margin-right: 100px; */
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+
+        .add-form label {
+
+            margin-top: 12px;
+
         }
 
         .add-form {
@@ -208,23 +218,39 @@
         <!-- Add Vehicle -->
         <section id="addVehicle">
             <h2>Add Vehicle</h2>
-            <form class="add-form" th:action="@{/Admin/addnewvehicle}" method="post" th:object="${newone}">
+            <form class="add-form" th:action="@{/Admin/addnewvehicle}" method="post" th:object="${newone}"
+            style="display: flex;">
+                <div style="display: block; margin-right: 100px; ">
+                <label for="">Vehicle Name</label>
+                <input type="text" placeholder="Vehicle Name" th:field="*{modelName}"><br>
+                <label for="">Brand</label>
+                <input type="text" placeholder="Brand" th:field="*{brand}"><br>
+                <label for="">Type</label>
+                <input type="text" placeholder="Type(scooty/bike)" th:field="*{type}"><br>
+                <label for="">Range</label>
+                <input type="number" placeholder="rangeKm" th:field="*{rangeKm}"><br>
+                <label for="">battery Capacity</label>
+                <input type="number" placeholder="Battery Capacity" th:field="*{batteryCapacity}"><br>
+                </div>
 
-                <input type="text" placeholder="Vehicle Name" th:field="*{modelName}">
-                <input type="text" placeholder="Brand" th:field="*{brand}">
-                <input type="text" placeholder="Type(scooty/bike)" th:field="*{type}">
-                <input type="number" placeholder="rangeKm" th:field="*{rangeKm}">
-                <input type="number" placeholder="Battery Capacity" th:field="*{batteryCapacity}">
-                <input type="number" placeholder="power" th:field="*{power}">
-                <input type="number" placeholder="stock" th:field="*{stock}">
-                <input type="number" placeholder="Price" th:field="*{price}">
-                <input type="text" placeholder="description" th:field="*{description}">
+                <div style="display: block;">
+                <label for="">Power</label>
+                <input type="number" placeholder="power" th:field="*{power}"><br>
+                <label for="">Stock Available</label>
+                <input type="number" placeholder="stock" th:field="*{stock}"><br>
+                <label for="">Price</label>
+                <input type="number" placeholder="Price" th:field="*{price}"><br>
+                <label for="">Description</label>
+                <input type="text" placeholder="description" th:field="*{description}"><br>
 
                 <label for="imageUrl">Image URL:</label>
                 <input type="url" id="imageUrl" name="imageUrl">
+                </div>
 
                 <!-- <input type="url" placeholder="Image URL"> -->
+                 <div style="text-align: center;">
                 <button type="submit">Add Vehicle</button>
+                </div>
 
             </form>
         </section>
@@ -282,12 +308,27 @@
 
 
                         <!-- <td>1</td><td>Hero Electric</td><td>Hero</td><td>₹85,000</td><td>Electric</td> -->
-                        <td><button><a
+                        <!-- <td><button><a
                                     th:href="@{/Admin/UpdateVehicleData/{modelName}(modelName=${vehicle.modelName})}">Edit</a></button>
+                        </td> -->
+                        <td>
+                            <button style="margin-bottom: 10px;">
+                                <a th:href="@{/Admin/Updatebyid/{vehicleId}(vehicleId=${vehicle.vehicleId})}">update</a>
+                            </button>
+
+                             <button>
+                                <a th:href="@{/Admin/DeleteVehiclebyid/{vehicleId}(vehicleId=${vehicle.vehicleId})}">Delete</a>
+                            </button>
                         </td>
-                        <td><button><a
+
+                        <!-- <td>
+                            <button>
+                                <a th:href="@{/Admin/DeleteVehiclebyid/{vehicleId}(vehicleId=${vehicle.vehicleId})}">Delete</a>
+                            </button>
+                        </td> -->
+                        <!-- <td><button><a
                                     th:href="@{/Admin/DeleteVehicle/{modelName}(modelName=${vehicle.modelName})}">Delete</a></button>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>

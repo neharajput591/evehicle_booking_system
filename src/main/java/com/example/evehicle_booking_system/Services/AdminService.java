@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.evehicle_booking_system.Repository.FeedbackRepository;
 import com.example.evehicle_booking_system.Repository.OrderRepository;
+import com.example.evehicle_booking_system.Repository.PaymentRepository;
 import com.example.evehicle_booking_system.Repository.UserRepository;
 import com.example.evehicle_booking_system.Repository.VehicleRepository;
 import com.example.evehicle_booking_system.UserModel.User;
@@ -27,6 +28,9 @@ public class AdminService {
     @Autowired
     OrderRepository or;
 
+    @Autowired
+    PaymentRepository pr;
+
     public List<User> finduser(@Param("r") String r){
         
         return ur.findusers(r);
@@ -45,7 +49,7 @@ public class AdminService {
     }
 
     public int getTotalOrders(){
-        return or.countOfALlOrders();
+        return pr.countOfALlOrders();
     }
 
     

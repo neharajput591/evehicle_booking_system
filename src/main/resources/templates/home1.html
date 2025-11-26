@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap');
+
+        * {
+            font-family: "Science Gothic", sans-serif;
+            
+        }
+
+        body {
+            margin: 0;
+            padding: 0%;
+            display: block;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: whitesmoke;
+            /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+        }
+
+        header {
+            height: 120px;
+        }
+
+        .left-section {
+            display: flex;
+            text-align: center;
+            margin-bottom: 0px;
+            margin-left: 20px;
+            margin-top: 5px;
+            height: 80px;
+            font-size: 20px;
+        }
+
+        .h1 {
+            margin-top: 0px;
+            padding-left: 0px;
+            color: rgb(149, 5, 5);
+            font-size: 45px;
+            text-align: center;
+        }
+
+        .left-section a {
+            font-size: 25px;
+            margin-top: 30px;
+            color: rgb(50, 50, 50);
+            /* margin-left: 100px; */
+            /* margin-right: 100px; */
+        }
+
+        .login {
+            margin-left: 520px;
+            margin-right: 50px;
+            text-decoration: none;
+           
+
+        }
+        .register{
+            text-decoration: none;
+        }
+
+        .login:hover,
+        .register:hover {
+            color: rgb(22, 22, 22);
+            /* border-bottom: 50cap; */
+            /* border-color: black; */
+        }
+
+        .home1 {
+            background-color: rgb(238, 193, 60);
+            color: black;
+            justify-content: center;
+            text-align: center;
+            font-size: 20px;
+            padding: 10px;
+            /* letter-spacing: 10px; */
+            word-spacing: 80px;
+
+        }
+
+        .home1 a {
+            padding-right: 20px;
+            color: rgb(33, 33, 33);
+            /* font-family: 'Times New Roman', Times, serif; */
+            font-family: "Science Gothic", sans-serif;
+            border: none;
+            outline: none;
+            text-decoration: none;
+            /* text-underline-offset: initial; */
+        }
+
+        .abc:hover {
+            color: rgb(72, 71, 71);
+        }
+
+        .main-content {
+            /* background-image: url("https://5.imimg.com/data5/SELLER/Default/2022/6/PK/UD/XM/146729354/model-jaunty-electric-scooty-3--500x500.jpeg"); */
+            background-image: url("https://www.indiacarnews.com/wp-content/uploads/2021/08/Ola-Electric-Scooter-Variants_1.jpg");
+            /* background-image: url("https://news24online.com/wp-content/uploads/2023/08/Ola-S1-X.png"); */
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+            /* margin-left: 100px; */
+            background-repeat: no-repeat;
+            height: 850px;
+            /* width: 100%; */
+            /* width:max-content; */
+            background-color: rgb(248, 246, 246);
+        }
+
+        .overlay-content {
+            position: absolute;
+            /* Position relative to .hero-section */
+            top: 85%;
+            /* Center vertically */
+            left: 50%;
+            /* Center horizontally */
+            transform: translate(-50%, -50%);
+            /* Adjust for perfect centering */
+            width: 100%;
+            /* Adjust width as needed */
+            /* padding: 2px; */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Semi-transparent black background */
+            color: white;
+            /* White text color */
+            text-align: center;
+            z-index: 2;
+            /* Ensure it's above the image */
+        }
+
+        .logos {
+
+            margin-top: 80px;
+            margin-bottom: 80px;
+            /* padding-left: 100px; */
+            display: flex;
+            justify-content: center;
+            gap: 130px;
+
+        }
+
+        .logos img {
+
+            /* padding-left: 80px; */
+            height: 50px;
+            width: 50px;
+        }
+
+        .img1 {
+            width: 290px;
+
+        }
+
+        .img2 {
+            width: 60px;
+        }
+
+        .best-deals {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            margin: 0px;
+            padding: 0%;
+            /* text-decoration:dashed  ; */
+        }
+
+        .best-deals h1 {
+            font-size: 100px;
+            color: rgb(47, 46, 46);
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .best-deals h3 {
+            font-size: 25px;
+            color: rgb(146, 146, 146);
+        }
+
+        .vehicledata {
+            margin: 0%;
+            padding: 0%;
+            margin-top: 5px;
+        }
+
+        .view-all-deals:hover {
+            color: white;
+            background-color: rgb(38, 38, 38);
+
+        }
+
+        .head {
+            font-size: 50px;
+            color: rgb(27, 26, 26);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+            /* font-family: 'Times New Roman', Times, serif; */
+            /* font-family: 'Courier New', Courier, monospace; */
+            justify-content: center;
+            text-align: center;
+        }
+
+        .aboutus {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 60px;
+            margin-left: 100px;
+        }
+
+        .aboutus img {
+            height: 130px;
+            width: 130px;
+            margin-left: 53px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .aboutus h2 {
+            color: rgb(50, 50, 50);
+            padding-left: 28px;
+
+        }
+
+        .vehicle1st {
+            border-radius: 5%;
+            box-shadow: 2px 3px 2px;
+            margin: 40px;
+
+            text-align: center;
+            display: inline;
+            justify-content: center;
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="nav">
+            <div class="left-section">
+                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                    alt="evo charge" class="logo" height="60px" width="120px">
+                <h1 class="h1">Charge</h1>
+                <a th:href="@{/login}" class="login">Login</a>
+                <a th:href="@{/register}" class="register">Register</a>
+            </div>
+        </nav>
+
+        <nav class="home1">
+
+            <a href="#home" class="hm" style="color: rgb(72, 71, 71);">Home |</a>
+            <a href="#about" class="abc">About |</a>
+            <a href="#vehicle" class="abc">Vehicle |</a>
+            <a href="#contact" class="abc">Contact</a>
+
+        </nav>
+
+    </header>
+
+    <div class="main-content" id="home">
+        <div class="overlay-content">
+            <h1
+                style="font-size: 100px;margin: 0; margin-top: 20px; padding: 0; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                EVO CHARGE</h1>
+            <p
+                style="font-size: 25px;color: rgb(171, 170, 170); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                EXCITING NEW OFFERS </p>
+            <p
+                style="font-size: 25px;color: rgb(171, 170, 170); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                DRIVE AWAY IN YOUR DREAM VEHICLE TODAY</p>
+            <!-- <p>You can add more paragraphs or other elements here.</p> -->
+            <!-- <img src="https://png.pngtree.com/png-clipart/20210114/ourmid/pngtree-yellow-linear-burst-particle-special-effect-png-image_2696943.png" alt=""> -->
+        </div>
+    </div>
+    <!-- <div class="scrolling-content"> -->
+    <!-- <p>More scrolling content below the overlay.</p> -->
+    <!-- <p>Keep scrolling to see the effect in action.</p> -->
+    <!-- Add more content to enable scrolling -->
+    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p> -->
+    <!-- <img src="https://www.indiacarnews.com/wp-content/uploads/2021/08/Ola-Electric-Scooter-Variants_1.jpg" alt="" width="100%"> -->
+    <!-- <img src="https://5.imimg.com/data5/SELLER/Default/2022/6/PK/UD/XM/146729354/model-jaunty-electric-scooty-3--500x500.jpeg" alt="" style="height: 800px; width: 80%; margin-left: 100px; ;"> -->
+    <!-- <img src="https://images.jdmagicbox.com/quickquotes/images_main/hero-maestro-edge-125-2021-disc-bs6-prismatic-yellow-239580370-i8f00.jpg alt="image" > -->
+    <!-- </div> -->
+
+    <div class="logos">
+
+        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Folaelectric&psig=AOvVaw3j48NwALVIQM1uwtP6_loI&ust=1763820665690000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJjZzZG2g5EDFQAAAAAdAAAAABAE" alt="Ola Electric" height="100px" width="100px"> -->
+        <img src="https://brandlogovector.com/wp-content/uploads/2021/10/Ola-Cab-Logo.png" alt="Ola Electric"
+            height="180px" width="400px" class="img1">
+
+        <img src="https://www.pngplay.com/wp-content/uploads/13/Tata-Motors-Logo-PNG-HD-Quality.png" alt="tata motors"
+            height="8px" width="10px" class="img2">
+        <img src="" alt="ather" height="80px" width="100px">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWy4b07SoRaoaiE6sR5aTmHYXKbuAuo-LD_hrV1sdhSXvQTlaTTFzg-J5BLEXH76tFVW0&usqp=CAU"
+            alt="hyundai" height="80px" width="100px">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/1200px-Tesla_logo.png"
+            alt="tesla" height="80px" width="100px">
+    </div>
+
+    <div class="best-deals" id="vehicle">
+        <h1>BEST DEALS</h1>
+        <h3>AMAZING NEW VEHICLES AT AMAZING PRICES</h3>
+    </div>
+
+    <div style="display: flex; margin-left: 50px; flex-wrap: wrap;">
+
+        <div th:each="vehicle: ${vehicles}" class="vehicle1st">
+
+            <img style="padding: 15px;" th:if="${vehicle != null and vehicle.imageUrl != null}"
+                th:src="${vehicle.imageUrl}" width="250" height="200" class="itemImage"
+                th:id="'itemImage-' + ${vehicle.vehicleId}" />
+            <h2 th:text="${vehicle.modelName}" class="vehicledata"></h2>
+            <h2 th:text="${vehicle.brand}" class="vehicledata"></h2>
+            <h2 th:text="${vehicle.price}" class="vehicledata"></h2>
+        </div>
+    </div>
+
+    <button class="view-all-deals"
+        style="background-color: rgb(227, 196, 40); padding: 6px; text-align: center; margin-left:45%; margin-top: 50px; border-radius: 5px; font-size: 23px; color: rgb(58, 58, 58);">View
+        All Deals</button>
+
+    <div id="about">
+        <div class="head">
+            <h1>Why Evo-Charge</h1>
+        </div>
+        <div class="aboutus">
+
+            <div>
+                <!-- <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsb2ZmaWNlOF9zcG9ydHNfY2FyX3NpbGhvdWV0dGVfaWNvbl9fYXV0b19kZWFsZXJzaGlwX2JyYV9kMjU2MjAyNy00OTI4LTRjYjItODg4YS05OGVjYmVjZjhkMjZfMS5wbmc.png" alt="car logo"> -->
+                <img src="https://purepng.com/public/uploads/large/purepng.com-ferrari-carcarsferrarigallop-961524670047nmpto.png"
+                    alt="">
+
+                <h2 style="color: rgb(50, 50, 50); flex-wrap: wrap;">Only certified vehicles</h2>
+            </div>
+
+            <div>
+                <img src="https://pngimg.com/d/speedometer_PNG49.png" alt="speedometer">
+                <h2 style="color: rgb(50, 50, 50);"> 7 days free trial</h2>
+            </div>
+
+            <div>
+                <img src="https://png.pngtree.com/png-clipart/20230328/original/pngtree-free-delivery-label-vector-illustration-png-image_9007482.png"
+                    alt="delivery truck">
+                <h2> Free and fast Delivery</h2>
+            </div>
+
+            <div>
+                <!-- <img src="https://5.imimg.com/data5/SELLER/Default/2022/11/ZB/KO/IR/65385309/customized-scooty-keychain-500x500.jpeg" alt=""> -->
+                <!-- <img src="https://www.royalcustomify.com/wp-content/uploads/2024/03/Customized-Honda-Activa-5G-Black-Colorful-Scooter-Shape-Gel-Number-Plate-Keychain.jpg" alt=""> -->
+                <img src="https://static.vecteezy.com/system/resources/previews/013/362/868/non_2x/remote-car-key-free-png.png  "
+                    alt="">
+                <h2>Free Test Drive</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- <style>
+    i{
+        color: red;
+        font-size: 3rem;
+    }
+</style>
+
+
+<i class="fa-solid fa-car"></i> -->
+
+</body>
+
+</html>

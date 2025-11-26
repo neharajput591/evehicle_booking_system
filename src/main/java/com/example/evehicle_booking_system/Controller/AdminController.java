@@ -1,7 +1,5 @@
 package com.example.evehicle_booking_system.Controller;
 
-import java.util.Base64;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,17 +70,40 @@ public class AdminController {
         return "AdminDashboard";
     }
 
-    @GetMapping("/Admin/UpdateVehicleData/{modelName}")
-    public String update(@PathVariable("modelName") String modelName ,Model model){
+    // @GetMapping("/Admin/UpdateVehicleData/{modelName}")
+    // public String update(@PathVariable("modelName") String modelName ,Model model){
 
-        Vehicle bike = vs.getByModelName(modelName);
-        model.addAttribute("bike",bike);
+    //     Vehicle bike = vs.getByModelName(modelName);
+    //     model.addAttribute("bike",bike);
 
-        return "UpdateVehicledetails";
+    //     return "UpdateVehicledetails";
+    // }
+
+    @GetMapping("/Admin/Updatebyid/{vehicleId}")
+    public String updateviaid(@PathVariable("vehicleId") Long vehicleId , Model model){
+
+        Vehicle veh = vs.getByVehicleId(vehicleId);
+        model.addAttribute("veh" , veh);
+        return "UpdateVehicle";
     }
 
-    @PostMapping("/Admin/updateddata")
-    public String updatevehicle(@ModelAttribute("bike") Vehicle bike, Model model){
+    // @PostMapping("/Admin/updateddata")
+    // public String updatevehicle(@ModelAttribute("bike") Vehicle bike, Model model){
+
+    //     vs.saveinvehicle(bike);
+
+    //        String r = "ROLE_USER";
+
+    //     model.addAttribute("vehicles" , vr.findAll());
+    //     model.addAttribute("users", as.finduser(r));
+    //     model.addAttribute("newone",new Vehicle());
+    //     // return "AdminDashboard";
+    //     return "redirect:/Admin/dashboard";
+
+    // }
+
+    @PostMapping("/Admin/updateddata1")
+     public String updatevehicle1(@ModelAttribute("veh") Vehicle bike, Model model){
 
         vs.saveinvehicle(bike);
 
@@ -96,16 +117,30 @@ public class AdminController {
 
     }
 
-    @GetMapping("/Admin/DeleteVehicle/{modelName}")
-    public String deletevehicle(@PathVariable("modelName") String modelName , Model model){
-        vs.deletevianame(modelName);
-           String r = "ROLE_USER";
+    // @GetMapping("/Admin/DeleteVehicle/{modelName}")
+    // public String deletevehicle(@PathVariable("modelName") String modelName , Model model){
+    //     vs.deletevianame(modelName);
+    //        String r = "ROLE_USER";
+
+    //     model.addAttribute("vehicles" , vr.findAll());
+    //     model.addAttribute("users", as.finduser(r));
+    //     model.addAttribute("newone",new Vehicle());
+
+    //     return "AdminDashboard";
+    // }
+
+    @GetMapping("/Admin/DeleteVehiclebyid/{vehicleId}")
+    public String deleteviaid(@PathVariable("vehicleId") Long vehicleId , Model model){
+        vs.deleteviaid(vehicleId);
+
+            String r = "ROLE_USER";
 
         model.addAttribute("vehicles" , vr.findAll());
         model.addAttribute("users", as.finduser(r));
         model.addAttribute("newone",new Vehicle());
 
         return "AdminDashboard";
+
     }
     
 }

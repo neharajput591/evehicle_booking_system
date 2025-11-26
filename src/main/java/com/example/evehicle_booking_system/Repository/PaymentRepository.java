@@ -20,6 +20,9 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     List<Payment> findByUserpaymentUserId(Long userId);
 
+     @Query("select COUNT(*) AS payment_id from Payment")
+    int countOfALlOrders();
+
     // @Query("SELECT pay FROM Payment pay WHERE pay.modelname=?1 AND pay.user_id=?2")
     // Optional<Payment> findByModelnameAndUser_id(String modelname , Long userid);
 

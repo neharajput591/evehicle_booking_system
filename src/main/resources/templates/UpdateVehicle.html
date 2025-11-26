@@ -37,7 +37,11 @@
     <div class="container">
         <h2>Edit</h2>
 
-        <form th:action="@{/Admin/updateddata}" method="post" th:object="${bike}">
+        <form th:action="@{/Admin/updateddata1}" method="post" th:object="${veh}">
+            <input type="hidden" th:field="*{vehicleId}">
+
+            <label >Image URL</label>
+            <input type="url" th:field="*{imageUrl}" >
             <label>Model Name:</label>
             <input type="text" th:field="*{modelName}" placeholder="model name">
 
@@ -64,9 +68,6 @@
 
             <label>stock</label>
             <input type="number" th:field="*{stock}" placeholder="stock">
-
-            <label>Image</label>
-            <input type="url" th:field="*{image}" placeholder="image">
 
             <button type="submit">Update</button>
         </form>

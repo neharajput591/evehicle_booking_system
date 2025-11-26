@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.evehicle_booking_system.Repository.VehicleRepository;
 import com.example.evehicle_booking_system.UserModel.Vehicle;
 
-import jakarta.transaction.Transactional;
-
 @Service
 public class VehicleService {
 
@@ -21,20 +19,32 @@ public class VehicleService {
         return vr.findAll();
     }
 
-    public Vehicle getByModelName(String modelName){
+    // public Vehicle getByModelName(String modelName){
 
-        Optional<Vehicle> opt = vr.findByModelName(modelName);
-        Vehicle veh = opt.get();
-        // return vr.findByModelName(modelName);
-        return veh;
+    //     Optional<Vehicle> opt = vr.findByModelName(modelName);
+    //     Vehicle veh = opt.get();
+    //     // return vr.findByModelName(modelName);
+    //     return veh;
+    // }
+
+    public Vehicle getByVehicleId(Long vehicleId){
+
+        Optional<Vehicle> upd = vr.findById(vehicleId);
+        Vehicle updatedone = upd.get();
+
+        return updatedone;
     }
     
     public void  saveinvehicle(Vehicle bike){
         vr.save(bike);
     }
 
-    @Transactional 
-    public void deletevianame(String modelName){
-        vr.deleteByModelName(modelName);
+    // @Transactional 
+    // public void deletevianame(String modelName){
+    //     vr.deleteByModelName(modelName);
+    // }
+
+    public void deleteviaid(Long vehicleId){
+        vr.deleteById(vehicleId);
     }
 }

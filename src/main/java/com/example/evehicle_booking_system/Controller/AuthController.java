@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.evehicle_booking_system.Repository.UserRepository;
+import com.example.evehicle_booking_system.Repository.VehicleRepository;
 import com.example.evehicle_booking_system.UserModel.User;
 
 @Controller
@@ -20,10 +21,15 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    VehicleRepository vr;
+
+
     // 🏠 Home Page (Public)
     @GetMapping({"/", "/home"})
-    public String homePage() {
-        return "home"; // home.html (contains login/register buttons)
+    public String homePage(Model model) {
+        model.addAttribute("vehicles" ,vr.findAll());
+        return "home1"; // home.html (contains login/register buttons)
     }
 
 //     @GetMapping("/User/home")
