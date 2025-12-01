@@ -6,6 +6,9 @@
         body {
             font-family: Arial;
             background-color: #e6f7ff;
+            background-image: url("https://m.economictimes.com/thumb/height-450,width-600,imgsize-32986,msid-115704915/ola-electric-launches-gig-and-s1-z.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         .container {
             width: 350px;
@@ -16,7 +19,7 @@
             box-shadow: 0 0 8px rgba(0,0,0,0.2);
         }
         input, button {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin: 10px 0;
         }
@@ -24,12 +27,13 @@
             background: #007bff;
             color: white;
             border: none;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Login</h2>
+    <h2 style="text-align: center;">Login</h2>
 
     <!-- <form th:action="@{/login}" method="post">
         <label>Email:</label>
@@ -48,7 +52,7 @@
     <label>Password:</label>
     <input type="password" name="password" required>
 
-    <button type="submit">Login</button>
+    <button type="submit" style="width: 200px; margin-left: 70px" >Login</button>
 </form>
 
 

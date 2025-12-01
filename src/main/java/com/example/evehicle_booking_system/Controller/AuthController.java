@@ -24,28 +24,24 @@ public class AuthController {
     @Autowired
     VehicleRepository vr;
 
-
     // 🏠 Home Page (Public)
-    @GetMapping({"/", "/home"})
+    @GetMapping({ "/", "/home" })
     public String homePage(Model model) {
-        model.addAttribute("vehicles" ,vr.findAll());
+        model.addAttribute("vehicles", vr.findAll());
         return "home1"; // home.html (contains login/register buttons)
     }
 
-//     @GetMapping("/User/home")
-// public String userHome() {
-//     return "user_home"; // user_home.html
-// }
-
+    // @GetMapping("/User/home")
+    // public String userHome() {
+    // return "user_home"; // user_home.html
+    // }
 
     // 🌐 Login Page (GET)
     @GetMapping("/login")
     public String loginPage() {
-        
+
         return "login"; // login.html in templates
     }
-
-    
 
     // 🌐 Registration Page (GET)
     @GetMapping("/register")
@@ -55,32 +51,31 @@ public class AuthController {
     }
 
     // 🧾 Save new user (POST)
-@PostMapping("/saveUser")
-public String saveUser(@ModelAttribute("user") User user) {
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") User user) {
 
-    // Encrypt password before saving
-    user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // Encrypt password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-    // Set default role
-    user.setRole("ROLE_USER");
+        // Set default role
+        user.setRole("ROLE_USER");
 
-    // Save user
-    userRepository.save(user);
+        // Save user
+        userRepository.save(user);
 
-    // Redirect to login after successful registration
-    return "redirect:/login?registerSuccess=true";
-}
-
+        // Redirect to login after successful registration
+        return "redirect:/login?registerSuccess=true";
+    }
 
     // // 🧍‍♂️ User Dashboard after successful login
     // @GetMapping("/User/home")
     // public String userHome() {
-    //     return "user_home"; // user_home.html (user dashboard)
+    // return "user_home"; // user_home.html (user dashboard)
     // }
 
     // // 👑 Admin Dashboard (if needed)
     // @GetMapping("/Admin/dashboard")
     // public String adminDashboard() {
-    //     return "admin_dashboard"; // admin_dashboard.html
+    // return "admin_dashboard"; // admin_dashboard.html
     // }
 }

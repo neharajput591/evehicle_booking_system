@@ -133,9 +133,9 @@ public class UserController {
            String email = principal.getName();
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
-
         User user = optionalUser.get();
-        Long user_idfeed = user.getUserId();
+
+        feed.setUseridfeed(user.getUserId());
 
         // setUser_idfeed(user_idfeed);
         feedrepo.save(feed);

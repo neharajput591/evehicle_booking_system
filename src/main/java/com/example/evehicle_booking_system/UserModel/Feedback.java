@@ -27,6 +27,7 @@ public class Feedback {
     // Long userId;
     // Long VehicleId;
 
+    String vehicleName;
     int rating;
     String comment;
     LocalDate feedbackDate;
