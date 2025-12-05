@@ -15,8 +15,11 @@
         }
 
         header {
-            background: linear-gradient(to right, #0c2167, rgb(237, 229, 229));
+            background: linear-gradient(to right, #4e5f94, rgb(237, 229, 229));
+            /* background: linear-gradient(to right, #0c2167, rgb(237, 229, 229)); */
         }
+
+        
 
 
         .logo {
@@ -79,15 +82,48 @@
             font-weight: 300;
         }
 
-        #button {
+        button {
             font-size: 15px;
             background-color: rgb(219, 180, 72);
             border-radius: 5px;
+            color: black;
+            text-decoration: none;
         }
 
-        #button:hover {
-            font-size: 18px;
-            background-color: rgb(234, 146, 58);
+        button:hover {
+            font-size: 16px;
+            background-color: rgb(235, 163, 91);
+            border-color: #951c0d;
+        }
+
+        .btn a{
+            color: black;
+            text-decoration: none;
+             
+        }
+        
+        /* #vehicle1st {
+            border-radius: 5px;
+            box-shadow: 2px 3px 2px;
+            margin: 40px;
+
+            text-align: center;
+            display: inline;
+            justify-content: center;
+
+
+        } */
+
+        #vehicle1st{
+
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: double;
+
+
+        }
+        #vehicle1st img{
+            margin-left: 15px;
         }
     </style>
 </head>
@@ -98,7 +134,7 @@
     <header>
         <nav class="nav">
             <div class="left-section">
-                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                <img src="https://www.pngkey.com/png/full/291-2919237_adler-pelzer-group-launches-evo-solution-for-new.png"
                     alt="evo charge" class="logo">
                 <h1 class="h1">Charge</h1>
             </div>
@@ -124,8 +160,8 @@
         </div>
     </div> -->
 
-    <div class="grey-ola" th:each="item : ${items}"
-        style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white; display: flex;">
+    <div class="grey-ola" id="vehicle1st" th:each="item : ${items}"
+        style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 70px; background-color: white; display: flex;" >
 
         <div>
 
@@ -161,7 +197,7 @@
             <!-- <button id="button" style="margin-left: 0px;" onclick="payment([[${item.cartItemId}]])">Buy Now</button> -->
 
             <button onclick="payment(this)" th:data-id="${item.cartItemId}" style="margin-left: 0px;">Buy Now</button>
-            <button>Remove from Cart</button>
+            <button class="btn"><a th:href="@{/User/removecartitem/{id}(id = ${item.cartItemId})}">Remove from Cart</a></button>
             <!-- <button><a th:href="@{/User/payfororder/{modelname}}">Payment</a></button> -->
         </div>
     </div>

@@ -15,7 +15,8 @@
         }
 
         header {
-            background: linear-gradient(to right, #0c2167, rgb(237, 229, 229));
+            background: linear-gradient(to right, #4e5f94, rgb(237, 229, 229));
+            /* background: linear-gradient(to right, #0c2167, rgb(237, 229, 229)); */
         }
 
 
@@ -82,22 +83,69 @@
         }
 
         form {
-            margin-top: 30px;
-            box-shadow: 5px 5px 5px 5px #a3a5a9;
+            background-color: aliceblue;
+            margin-top: 25px;
+            margin-left: 35px;
+            margin-bottom: 25px;
+            /* margin-right: 5px; */
+            box-shadow: 0px 4px 4px 0px #6996f1;
             box-sizing: border-box;
-            padding: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
+            position:fixed;
+            min-width: 25%;
+            /* padding: 15px; */
             /* margin-left: 1050px; */
-            position: fixed;
+            /* position: fixed; */
+        }
+
+        .main{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .leftone{
+            display: flex; 
+            flex-wrap: wrap; 
+            flex: 2; 
+            /* flex-wrap: wrap;  */
+            box-shadow: 2px 2px black;
+        }
+        .form{
+            flex: 1;
+            text-align: center;
+            background-color: #99aed9;
+        }
+
+        button{
+            background-color: rgb(17, 129, 174); 
+            margin-top: 15px; 
+            padding: 5px; 
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            /* background-color: #3f29eb; */
+            /* color: #99aed9; */
+            border-color: rgb(26, 24, 24);
+            font-size: 15px;
+            background-color: rgb(13, 99, 203);
+            color: white;
+            border-radius: 5px;
         }
     </style>
 </head>
+
 
 <body>
 
     <header>
         <nav class="nav">
             <div class="left-section">
-                <img src="https://www.kindpng.com/picc/m/394-3947437_logo-evo-esport-png-download-logo-evo-e.png"
+                <img src="https://www.pngkey.com/png/full/291-2919237_adler-pelzer-group-launches-evo-solution-for-new.png"
                     alt="evo charge" class="logo">
                 <h1 class="h1">Charge</h1>
             </div>
@@ -105,58 +153,16 @@
             <div class="right-section">
                 <a th:href="@{/User/vehicle}" class="login">View Vehicle</a>
                 <!-- <a th:href="@{/User/cart}" class="register">MyCart</a> -->
-                <a th:href="@{/User/orders}">Order</a>
+                <a th:href="@{/User/cart}">MyCart</a>
                 <!-- <a th:href=""></a> -->
                 <a th:href="@{/logout}">Logout</a>
             </div>
         </nav>
 
     </header>
-    <!-- 
-    <div style="display: flex;">
-        <div class="main" th:each="order: ${orders}"
-            style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 100px; background-color: white; display: block;">
 
-            <div class="image_section">
-
-                <img th:src="${order.image}" alt="Vehicle image" height="300" width="400">
-
-            </div>
-
-            <div style="margin-top: 50px; display: block; padding-left: 80px;">
-
-                <span th:text="${order.vehicleId}" style="display: none;"></span>
-                <span><b>Model Name</b></span>
-                <span th:text="${order.modelname}"></span><br> <br>
-
-                <span><b>Price</b></span>
-                <span th:text="${order.price}"></span> <br> <br>
-
-            </div>
-        </div>
-
-        <form action="#" th:action="@{/User/feedback}" method="post" th:object="${feed}">
-
-            <input type="text" th:text="${order.modelname}" th:field="*{vehicleName}" placeholder="Model Name">
-
-            <input type="text" th:field="*{vehicleName}" placeholder="Model Name">
-
-            <h3>feedback :- </h3>
-            <input type="text" th:field="*{comment}">
-
-            <h3>Rating</h3>
-            <input type="number" th:field="*{rating}" pattern="[1-5]{1}">
-
-            <h3>Date</h3>
-            <input type="date" th:field="*{feedbackDate}" name="feedback_date" id="">
-
-            <button type="submit">Submit</button>
-        </form>
-
-    </div> -->
-
-    <div style="display: flex; flex-wrap: wrap;">
-        <div style="display: flex; flex-wrap: wrap;  flex-wrap: wrap; box-shadow: 2px 2px black;">
+    <div class="main">
+        <div class="leftone">
 
             <div th:each="order: ${orders}" class="vehicle1st">
 
@@ -168,9 +174,7 @@
         </div>
 
 
-        
-        
-        
+        <div class="form">
             <form action="#" th:action="@{/User/feedback}" method="post" th:object="${feed}">
 
                 <!-- <input type="text" th:text="${order.modelname}" th:field="*{vehicleName}" placeholder="Model Name"> -->
@@ -188,32 +192,11 @@
                 <h3>Date</h3>
                 <input type="date" th:field="*{feedbackDate}" name="feedback_date" id=""><br>
 
-                <button type="submit"
-                    style="background-color: rgb(11, 85, 114); margin-top: 15px; padding: 5px; color: white;">Submit</button>
+                <button type="submit">Submit</button>
             </form>
-
+        </div>
     </div>
 
-    <!-- <table>
-        <thead>
-            <tr>
-                <th>Model name </th>
-                <th>image</th>
-                <th>price</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr th:each="order:${orders}">
-
-                <td th:text="${order.modelname}"></td>
-                <td th:text="${order.image}"></td>
-                <td th:text="${order.price}"></td>
-
-            </tr>
-
-        </tbody>
-    </table> -->
 </body>
 
 </html>
