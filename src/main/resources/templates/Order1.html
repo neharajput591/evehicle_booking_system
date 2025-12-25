@@ -136,6 +136,15 @@
             color: white;
             border-radius: 5px;
         }
+
+        .service-but {
+
+            color: white;
+            margin-bottom: 10px;
+            text-decoration: none;
+            /* padding-bottom: 50px; */
+            
+        }
     </style>
 </head>
 
@@ -170,6 +179,8 @@
                 <h2 th:text="${order.modelname}" class="vehicledata"></h2>
                 <!-- <h2 th:text="${order.brand}" class="vehicledata"></h2> -->
                 <h2 th:text="${order.price}" class="vehicledata"></h2>
+
+                <button class="service-but" ><a th:href="@{/User/servicing}" class="service-but" style="margin-bottom: 50px;">Servicing details</a></button>
             </div>
         </div>
 

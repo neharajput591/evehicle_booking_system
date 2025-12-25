@@ -374,16 +374,19 @@
                         <th>User</th>
                         <th>Feedback</th>
                         <th>Rating</th>
+                        <th>Vehicle name </th>
                         <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <tr th:each="feedback:${feedbacks}">
+                        <td th:text="${feedback.useridfeed}"></td>
 
-                        <td th:text="${feedback.feedbackId}"></td>
+                        <!-- <td th:text="${feedback.feedbackId}"></td> -->
                         <td th:text="${feedback.comment}"></td>
                         <td th:text="${feedback.rating}"></td>
+                        <td th:text="${feedback.vehicleName}"></td>
                         <td th:text="${feedback.feedbackDate}"></td>
 
                     </tr>

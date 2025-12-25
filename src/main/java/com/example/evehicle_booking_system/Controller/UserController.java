@@ -167,6 +167,12 @@ public class UserController {
 
     }
 
+    @GetMapping("/User/servicing")
+    public String servicingdetails(){
+
+        return "Servicing";
+    }
+
     // @GetMapping("/User/payfororder/{modelname}")
     // public String payorder(@PathVariable(value = "modelname") String modelname,
     // Model model, Principal principal) {
