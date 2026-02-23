@@ -1,5 +1,6 @@
 package com.example.evehicle_booking_system.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,8 @@ public interface  VehicleRepository extends JpaRepository<Vehicle, Long>{
 
     @Query("SELECT COUNT(*) AS vehicle_id FROM Vehicle")
     int sumtotalvehicles();
+
+    @Query(value="SELECT *FROM VEHICLE LIMIT 3" , nativeQuery=true)
+    public List<Vehicle> findAnyfive();
     
 }

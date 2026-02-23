@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Order </title>
 
     <style>
         body {
@@ -175,13 +175,32 @@
 
             <div th:each="order: ${orders}" class="vehicle1st">
 
-                <img style="padding: 15px;" th:src="${order.image}" width="250" height="200" class="itemImage" />
-                <h2 th:text="${order.modelname}" class="vehicledata"></h2>
+                <img style="padding: 15px;" th:src="${order.image}" th:id="'orderimage-' + ${order.paymentId}" width="250" height="200" class="itemImage" />
+                <h2 th:text="${order.modelname}" class="vehicledata" th:id="'ordername-' + ${order.paymentId}"></h2>
                 <!-- <h2 th:text="${order.brand}" class="vehicledata"></h2> -->
-                <h2 th:text="${order.price}" class="vehicledata"></h2>
-
-                <button class="service-but" ><a th:href="@{/User/servicing}" class="service-but" style="margin-bottom: 50px;">Servicing details</a></button>
+                <h2 th:text="${order.price}" class="vehicledata" th:id="'orderprice-' + ${order.paymentId}"></h2>
+                
+                <button ><a th:href="@{/User/servicing/{orderId}(orderId=${order.paymentId})}">Schedule Servicing</a></button>
             </div>
+    <!-- 
+                <form th:action="/User/servicedate" method="post" >
+
+                    <input type="hidden" th:src="${order.image}">
+                    <input type="hidden" th:text="${order.modelname}">
+                    <input type="hidden" th:text="${order.price}">
+                    <input type="hidden" th:text="${order.userpayment}">
+                    <input type="hidden" th:text="${order.vehicleId}">
+
+                    <button class="service-but"><a th:href="@{/User/servicing}" class="service-but" style="margin-bottom: 50px;">Schedule Servicing</a></button>
+
+
+                </form> -->
+
+
+                <!-- <button class="service-but" th:data-id="${order.paymentId}" ><a th:href="@{/User/servicing}" class="service-but" style="margin-bottom: 50px;">Schedule Servicing</a></button> -->
+
+
+                <!-- <button class="service-but" onclick="scheduleServicing(this)" th:data-id="${order.paymentId}" ><a th:href="@{/User/servicing}" class="service-but" style="margin-bottom: 50px;">Schedule Servicing</a></button> -->
         </div>
 
 
@@ -208,6 +227,57 @@
         </div>
     </div>
 
+    <script>
+
+        function scheduleServicing(buttonElement){
+
+            const id = buttonElement.dataset.id;
+
+            const modelname = document.getElementById("ordername-" + id).textContent;
+            const price = parseFloat(document.getElementById("orderprice-" + id).textContent.trim());
+            const image = document.getElementById("orderimage-" + id).src;
+            // const orderId = Number(document.getElementById(id).textContent);
+
+            const scheduleservice = {modelname , price , image, id };
+        }
+        
+        function payment(buttonElement) {
+
+
+            const id = buttonElement.dataset.id;
+
+            const modelname = document.getElementById("itemModel-" + id).textContent;
+            const price = parseFloat(document.getElementById("itemPrice-" + id).textContent.trim());
+            const image = document.getElementById("itemImage-" + id).src;
+            const vehicleId = Number(document.getElementById("itemvehicle-" + id).textContent);
+
+            console.log("price " + price);
+
+            const paymentitem = { modelname, price, image , vehicleId};
+
+            fetch("/User/payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                //   credentials: "same-origin",      // 👈 REQUIRED
+                mode: "same-origin",
+                body: JSON.stringify(paymentitem)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Order placed successfully");
+                        // return "/User/payfororder/{modelname}";
+                    } else {
+                        alert("Please LOGIN to order an item");
+                    }
+                })
+                .catch(err => console.error("Error ordering an item:", err));
+
+        }
+    </script>
+
 </body>
+
+
 
 </html>

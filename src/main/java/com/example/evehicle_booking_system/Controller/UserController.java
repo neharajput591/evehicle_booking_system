@@ -16,16 +16,25 @@ import com.example.evehicle_booking_system.Repository.CartItemRepository;
 import com.example.evehicle_booking_system.Repository.FeedbackRepository;
 import com.example.evehicle_booking_system.Repository.OrderRepository;
 import com.example.evehicle_booking_system.Repository.PaymentRepository;
+import com.example.evehicle_booking_system.Repository.ServiceRepo;
 import com.example.evehicle_booking_system.Repository.UserRepository;
 import com.example.evehicle_booking_system.Services.PaymentService;
+import com.example.evehicle_booking_system.Services.ServiceRequestService;
 import com.example.evehicle_booking_system.Services.VehicleService;
 import com.example.evehicle_booking_system.UserModel.CartItem;
 import com.example.evehicle_booking_system.UserModel.Feedback;
 import com.example.evehicle_booking_system.UserModel.Payment;
+import com.example.evehicle_booking_system.UserModel.ServiceRequest;
 import com.example.evehicle_booking_system.UserModel.User;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    ServiceRequestService servService;
+
+    @Autowired
+    ServiceRepo servrepo;
 
     @Autowired
     VehicleService vs;
@@ -167,10 +176,34 @@ public class UserController {
 
     }
 
-    @GetMapping("/User/servicing")
-    public String servicingdetails(){
+    @GetMapping("/User/servicing/{orderId}")
+    public String servicingdetails(@PathVariable Long orderId , Model model){
+
+        // Optional<Payment> orderveh = paymentservice.getPaymentById(orderId);
+
+        // Payment payment = orderveh.get();
+
+        Payment payment = paymentservice.getPaymentById(orderId)
+            .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        ServiceRequest request = new ServiceRequest();
+
+        request.setVehicleId(payment.getVehicleId());
+        request.setModelName(payment.getModelname());
+        request.setUserId(payment.getUserpayment().getUserId());
+
+        model.addAttribute("serviceRequest" , request);
 
         return "Servicing";
+    }
+
+    @PostMapping("/User/Data")
+    public String submitservice(@ModelAttribute ServiceRequest serviceRequest){
+
+        servrepo.save(serviceRequest);
+
+        return "redirect:/User/orders";
+
     }
 
     // @GetMapping("/User/payfororder/{modelname}")

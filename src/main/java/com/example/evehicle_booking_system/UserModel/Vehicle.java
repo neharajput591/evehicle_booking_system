@@ -55,8 +55,8 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicleorder" , cascade = CascadeType.ALL)
     private List<Order> order12;
 
-    @OneToMany(mappedBy = "vehiclefeed", cascade = CascadeType.ALL)
-    private List<Feedback> vehiclefeedback;
+    // @OneToMany(mappedBy = "vehiclefeed", cascade = CascadeType.ALL)
+    // private List<Feedback> vehiclefeedback;
     
     
 }

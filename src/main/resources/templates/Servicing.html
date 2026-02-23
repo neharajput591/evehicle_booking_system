@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicing</title>
+</head>
+<body>
+    
+    <form th:action="@{/User/Data}" method="post" th:object="${serviceRequest}">
+
+        <h1>Servicing Request</h1>
+
+        UserId:
+        <input type="text" th:field="*{userId}">
+
+        vehicleId:
+        <input type="text" th:field="*{vehicleId}">
+
+        model Name:
+        <input type="text" th:field="*{modelName}">
+
+        servicingDate:
+        <input type="date" th:field="*{servicingDate}">
+
+        servicingTime:
+        <input type="time" th:field="*{servicingTime}">
+
+        servicingDesc:
+        <input type="text" th:field="*{servicingDesc}">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

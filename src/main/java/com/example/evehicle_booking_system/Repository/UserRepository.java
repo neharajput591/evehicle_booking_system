@@ -12,7 +12,7 @@ import com.example.evehicle_booking_system.UserModel.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
-    @Query("select u from User u where u.role=?1")
+    @Query("select u from User u where u.role = :r")
     public List<User> findusers(@Param("r") String r);
 
     @Query("SELECT COUNT(*) AS user_id FROM User")

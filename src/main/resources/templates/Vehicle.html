@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>View Vehicle </title>
 
     <style>
         body {
@@ -119,9 +119,10 @@
     </header>
 
     <div class="grey-ola" th:each="vehicle : ${vehicles}"
-        style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 70px; background-color: white; display: flex;">
+        style="margin: 25px; box-shadow: 5px 5px 5px 5px #a3a5a9; margin-bottom: 70px; background-color: white; display: flex;"
+        >
 
-        <div>
+        <div onclick="vehdetails()">
             <img th:if="${vehicle != null and vehicle.imageUrl != null}" th:src="${vehicle.imageUrl}" width="550"
                 height="400" class="itemImage" th:id="'itemImage-' + ${vehicle.vehicleId}" />
 
@@ -194,6 +195,10 @@
         });
 
 
+        function vehdetails(){
+
+            alert("hello users")
+        }
 
 
         function payment(buttonElement) {

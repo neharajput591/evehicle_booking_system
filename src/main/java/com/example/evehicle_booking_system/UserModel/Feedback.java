@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,14 +30,14 @@ public class Feedback {
     String comment;
     LocalDate feedbackDate;
     Long useridfeed;
-    Long vehicleidfeed;
+    // Long vehicleidfeed;
 
-    @ManyToOne
-    @JoinColumn(name="user_idfeed", referencedColumnName = "user_id")
-    private User userfeedback;
+    // @ManyToOne
+    // @JoinColumn(name="user_idfeed", referencedColumnName = "user_id")
+    // private User userfeedback;
 
-    @ManyToOne
-    @JoinColumn(name="vehicle_idfeed", referencedColumnName = "vehicleId")
-    private Vehicle vehiclefeed;
+    // @ManyToOne
+    // @JoinColumn(name="vehicle_idfeed", referencedColumnName = "vehicleId")
+    // private Vehicle vehiclefeed;
     
 }

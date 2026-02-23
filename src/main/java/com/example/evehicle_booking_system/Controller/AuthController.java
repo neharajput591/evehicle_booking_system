@@ -27,7 +27,7 @@ public class AuthController {
     // 🏠 Home Page (Public)
     @GetMapping({ "/", "/home" })
     public String homePage(Model model) {
-        model.addAttribute("vehicles", vr.findAll());
+        model.addAttribute("vehicles", vr.findAnyfive());
         return "home1"; // home.html (contains login/register buttons)
     }
 
